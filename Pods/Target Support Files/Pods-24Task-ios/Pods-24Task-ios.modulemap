@@ -1,0 +1,6 @@
+framework module Pods_24Task_ios {
+  umbrella header "Pods-24Task-ios-umbrella.h"
+
+  export *
+  module * { export * }
+}
