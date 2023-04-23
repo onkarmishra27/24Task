@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18126BAA29F59BEE00EA63FA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18126BA929F59BEE00EA63FA /* NetworkService.swift */; };
+		18126BAD29F59C2700EA63FA /* APIErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18126BAC29F59C2700EA63FA /* APIErrorResponse.swift */; };
+		18126BB029F59C3900EA63FA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18126BAE29F59C3900EA63FA /* NetworkRequest.swift */; };
+		18126BB329F5A23700EA63FA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18126BB229F5A23700EA63FA /* HomeViewController.swift */; };
 		182FE89429F5277200AE7635 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FE89329F5277200AE7635 /* AppDelegate.swift */; };
 		182FE89629F5277200AE7635 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FE89529F5277200AE7635 /* SceneDelegate.swift */; };
 		182FE89829F5277200AE7635 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FE89729F5277200AE7635 /* LoginSignupViewController.swift */; };
 		182FE89B29F5277200AE7635 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182FE89929F5277200AE7635 /* Main.storyboard */; };
 		182FE89D29F5277300AE7635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182FE89C29F5277300AE7635 /* Assets.xcassets */; };
 		182FE8A029F5277300AE7635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182FE89E29F5277300AE7635 /* LaunchScreen.storyboard */; };
-		182FE8A829F53ACA00AE7635 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FE8A729F53ACA00AE7635 /* LoginViewController.swift */; };
 		B7EEEFF26E7F4F1C73308F85 /* Pods_24Task_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818EE92044F0F830A9A7BE68 /* Pods_24Task_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18126BA929F59BEE00EA63FA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		18126BAC29F59C2700EA63FA /* APIErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrorResponse.swift; sourceTree = "<group>"; };
+		18126BAE29F59C3900EA63FA /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		18126BB229F5A23700EA63FA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		182FE89029F5277200AE7635 /* 24Task-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "24Task-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		182FE89329F5277200AE7635 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		182FE89529F5277200AE7635 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,7 +33,6 @@
 		182FE89C29F5277300AE7635 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		182FE89F29F5277300AE7635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		182FE8A129F5277300AE7635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		182FE8A729F53ACA00AE7635 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33EBAEF3284FCE6556052679 /* Pods-24Task-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-24Task-ios.debug.xcconfig"; path = "Target Support Files/Pods-24Task-ios/Pods-24Task-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		634778BCA6198A92D87F4DCD /* Pods-24Task-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-24Task-ios.release.xcconfig"; path = "Target Support Files/Pods-24Task-ios/Pods-24Task-ios.release.xcconfig"; sourceTree = "<group>"; };
 		818EE92044F0F830A9A7BE68 /* Pods_24Task_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_24Task_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +50,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18126BA429F59B7900EA63FA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				18126BAB29F59BF500EA63FA /* Requests */,
+				18126BA829F59BD000EA63FA /* Error */,
+				18126BA929F59BEE00EA63FA /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		18126BA529F59B8C00EA63FA /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				182FE89E29F5277300AE7635 /* LaunchScreen.storyboard */,
+				182FE89529F5277200AE7635 /* SceneDelegate.swift */,
+				182FE8A129F5277300AE7635 /* Info.plist */,
+				182FE89C29F5277300AE7635 /* Assets.xcassets */,
+				182FE89929F5277200AE7635 /* Main.storyboard */,
+				182FE89329F5277200AE7635 /* AppDelegate.swift */,
+			);
+			name = Base.lproj;
+			sourceTree = "<group>";
+		};
+		18126BA829F59BD000EA63FA /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				18126BAC29F59C2700EA63FA /* APIErrorResponse.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		18126BAB29F59BF500EA63FA /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				18126BAE29F59C3900EA63FA /* NetworkRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		182FE88729F5277200AE7635 = {
 			isa = PBXGroup;
 			children = (
@@ -65,13 +110,9 @@
 		182FE89229F5277200AE7635 /* 24Task-ios */ = {
 			isa = PBXGroup;
 			children = (
+				18126BA529F59B8C00EA63FA /* Base.lproj */,
+				18126BA429F59B7900EA63FA /* Services */,
 				182FE8A929F53AD700AE7635 /* Views */,
-				182FE89329F5277200AE7635 /* AppDelegate.swift */,
-				182FE89529F5277200AE7635 /* SceneDelegate.swift */,
-				182FE89929F5277200AE7635 /* Main.storyboard */,
-				182FE89C29F5277300AE7635 /* Assets.xcassets */,
-				182FE89E29F5277300AE7635 /* LaunchScreen.storyboard */,
-				182FE8A129F5277300AE7635 /* Info.plist */,
 			);
 			path = "24Task-ios";
 			sourceTree = "<group>";
@@ -79,8 +120,8 @@
 		182FE8A929F53AD700AE7635 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				182FE8A729F53ACA00AE7635 /* LoginViewController.swift */,
 				182FE89729F5277200AE7635 /* LoginSignupViewController.swift */,
+				18126BB229F5A23700EA63FA /* HomeViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,10 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18126BB029F59C3900EA63FA /* NetworkRequest.swift in Sources */,
+				18126BAA29F59BEE00EA63FA /* NetworkService.swift in Sources */,
 				182FE89829F5277200AE7635 /* LoginSignupViewController.swift in Sources */,
+				18126BAD29F59C2700EA63FA /* APIErrorResponse.swift in Sources */,
 				182FE89429F5277200AE7635 /* AppDelegate.swift in Sources */,
+				18126BB329F5A23700EA63FA /* HomeViewController.swift in Sources */,
 				182FE89629F5277200AE7635 /* SceneDelegate.swift in Sources */,
-				182FE8A829F53ACA00AE7635 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

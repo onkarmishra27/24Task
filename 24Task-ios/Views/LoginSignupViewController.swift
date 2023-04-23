@@ -1,157 +1,107 @@
 import UIKit
-import SnapKit
 
 class LoginSignupViewController: UIViewController {
     
-    let signUpButton = UIButton()
-    let loginButton = UIButton()
-    let containerView = UIView()
-    let loginView = UIView()
-    let signupView = UIView()
-    let usernameTextField = UITextField()
-    let passwordTextField = UITextField()
-    let loginButtonInView = UIButton()
-
-    
-    var activeTab: ActiveTab = .signIn {
-        didSet {
-            if activeTab == .signIn {
-                setActiveTabButton(button: signUpButton)
-                containerView.addSubview(signupView)
-                loginView.removeFromSuperview()
-            } else {
-                setActiveTabButton(button: loginButton)
-                containerView.addSubview(loginView)
-                signupView.removeFromSuperview()
-            }
-        }
-    }
+    @IBOutlet weak var forgotPassword: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var userNameOrEmail: UITextField!
+    @IBOutlet weak var signUpUserName: UITextField!
+    @IBOutlet weak var passWordHeightConstrain: NSLayoutConstraint!
+    @IBOutlet weak var passwordEyeHeightContraints: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set up the container view
-        
-        containerView.backgroundColor = UIColor(displayP3Red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
-        containerView.layer.cornerRadius = 20
-        
-        view.addSubview(containerView)
-        containerView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(50)
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(40)
+        configureView()
+    }
+    
+    private func configureView() {
+        forgotPassword.isHidden = true
+        loginButton.setTitle("Create Account", for: .normal)
+        passwordEyeHeightContraints.constant = 65
+    }
+    
+    @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex  == 0{
+            configureCreateAccountView()
+        } else {
+            configureLoginView()
+        }
+    }
+    
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
+        guard let username = userNameOrEmail.text, let password = password.text else {
+            // Handle error if any of the fields is empty
+            return
         }
         
-        // Set up the sign in button
-        signUpButton.setTitle("Sign up", for: .normal)
-        signUpButton.setTitleColor(UIColor.black, for: .normal)
-        signUpButton.backgroundColor = UIColor.white
-        signUpButton.layer.cornerRadius = 15
-        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        let deviceToken = "" // get the device token here
         
-        containerView.addSubview(signUpButton)
-        signUpButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(2)
-            make.bottom.equalToSuperview().inset(2)
-            make.width.equalTo(containerView.snp.width).dividedBy(2).offset(-10)
-            make.leading.equalTo(containerView.snp.leading).offset(2)
+        let parameters: [String: Any] = [
+            "username": username,
+            "password": password,
+            "device_token": deviceToken,
+            "profile_type_id": 2,
+            "sys_id": 1,
+            "device_type": 0,
+            "loginMethod": "normal_login"
+        ]
+        
+        let urlString = "https://u71j89oyyh.execute-api.us-east-2.amazonaws.com/dev/login"
+        guard let url = URL(string: urlString) else {
+            // Handle error if URL is invalid
+            return
         }
         
-        // Set up the login button
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            // Handle error if unable to serialize parameters as JSON
+            return
+        }
+        request.httpBody = httpBody
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                // Handle error
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            if let data = data {
+                // Handle response data
+                do {
+                    let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(jsonResponse)
+                } catch {
+                    // Handle error if unable to deserialize response data as JSON
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    private func configureCreateAccountView() {
+        userNameOrEmail.placeholder = "Email"
+        signUpUserName.placeholder = "Username"
+        forgotPassword.isHidden = true
+        signUpUserName.isHidden = false
+        forgotPassword.isHidden = true
+        loginButton.setTitle("Create Account", for: .normal)
+        passWordHeightConstrain.constant = 10
+        passwordEyeHeightContraints.constant = 65
+    }
+    
+    private func configureLoginView() {
+        userNameOrEmail.placeholder = "Username or Email"
+        signUpUserName.isHidden = true
+        forgotPassword.isHidden = false
         loginButton.setTitle("Login", for: .normal)
-        loginButton.setTitleColor(UIColor.black, for: .normal)
-        loginButton.backgroundColor = UIColor.gray
-        loginButton.layer.cornerRadius = 15
-        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        
-        //login view:--------
-        loginView.addSubview(usernameTextField)
-        loginView.addSubview(passwordTextField)
-        loginView.addSubview(loginButtonInView)
-        
-        usernameTextField.placeholder = "Username or Email"
-        passwordTextField.placeholder = "Password"
-        passwordTextField.isSecureTextEntry = true
-        
-        
-        loginButtonInView.setTitle("Login", for: .normal)
-        loginButtonInView.setTitleColor(.white, for: .focused)
-        loginButtonInView.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16) // set the font to bold
-        loginButtonInView.backgroundColor = .systemBlue
-        loginButtonInView.layer.cornerRadius = 10
-        
-       
-        usernameTextField.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(80)
-            make.leading.equalToSuperview().offset(10)
-            make.height.equalTo(40)
-        }
-
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(usernameTextField.snp.bottom).offset(10)
-            make.leading.equalToSuperview().offset(10)
-            make.height.equalTo(40)
-        }
-        
-        loginButtonInView.snp.makeConstraints{make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(80)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(40)
-            make.width.equalToSuperview().offset(300)
-        }
-
-       
-
-        
-        containerView.addSubview(loginButton)
-        loginButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(2)
-            make.bottom.equalToSuperview().inset(2)
-            make.width.equalTo(containerView.snp.width).dividedBy(2).offset(-10)
-            make.trailing.equalTo(containerView.snp.trailing).inset(2)
-        }
-        
-        // Set up the sign up view
-        view.addSubview(signupView)
-        signupView.snp.makeConstraints { make in
-            make.top.equalTo(containerView.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
-        }
-        
-        // Set up the login view
-        loginView.backgroundColor = UIColor.green
-        view.addSubview(loginView)
-        loginView.snp.makeConstraints { make in
-            make.top.equalTo(containerView.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
-        }
-        
-        // Set initial tab as sign in
-        activeTab = .signIn
-    }
-    
-    func setActiveTabButton(button: UIButton) {
-        signUpButton.backgroundColor = UIColor(displayP3Red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
-        loginButton.backgroundColor = UIColor(displayP3Red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
-        button.backgroundColor = UIColor.white
-    }
-    
-    @objc func signUpButtonTapped()
- {
-        activeTab = .signIn
-    }
-    
-    @objc func loginButtonTapped() {
-        activeTab = .login
-
-
-    }
-    
-    enum ActiveTab {
-        case signIn, login
+        passWordHeightConstrain.constant = -50
+        passwordEyeHeightContraints.constant = 5
     }
 }
