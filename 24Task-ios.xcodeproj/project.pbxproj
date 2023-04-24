@@ -17,6 +17,7 @@
 		182FE89B29F5277200AE7635 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182FE89929F5277200AE7635 /* Main.storyboard */; };
 		182FE89D29F5277300AE7635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182FE89C29F5277300AE7635 /* Assets.xcassets */; };
 		182FE8A029F5277300AE7635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182FE89E29F5277300AE7635 /* LaunchScreen.storyboard */; };
+		18964AC129F6DDA300F8223C /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18964AC029F6DDA300F8223C /* LoginModel.swift */; };
 		B7EEEFF26E7F4F1C73308F85 /* Pods_24Task_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818EE92044F0F830A9A7BE68 /* Pods_24Task_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		182FE89C29F5277300AE7635 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		182FE89F29F5277300AE7635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		182FE8A129F5277300AE7635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18964AC029F6DDA300F8223C /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		33EBAEF3284FCE6556052679 /* Pods-24Task-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-24Task-ios.debug.xcconfig"; path = "Target Support Files/Pods-24Task-ios/Pods-24Task-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		634778BCA6198A92D87F4DCD /* Pods-24Task-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-24Task-ios.release.xcconfig"; path = "Target Support Files/Pods-24Task-ios/Pods-24Task-ios.release.xcconfig"; sourceTree = "<group>"; };
 		818EE92044F0F830A9A7BE68 /* Pods_24Task_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_24Task_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,20 +112,29 @@
 		182FE89229F5277200AE7635 /* 24Task-ios */ = {
 			isa = PBXGroup;
 			children = (
+				18964ABF29F6DD9200F8223C /* Models */,
 				18126BA529F59B8C00EA63FA /* Base.lproj */,
 				18126BA429F59B7900EA63FA /* Services */,
-				182FE8A929F53AD700AE7635 /* Views */,
+				182FE8A929F53AD700AE7635 /* Views Controller */,
 			);
 			path = "24Task-ios";
 			sourceTree = "<group>";
 		};
-		182FE8A929F53AD700AE7635 /* Views */ = {
+		182FE8A929F53AD700AE7635 /* Views Controller */ = {
 			isa = PBXGroup;
 			children = (
 				182FE89729F5277200AE7635 /* LoginSignupViewController.swift */,
 				18126BB229F5A23700EA63FA /* HomeViewController.swift */,
 			);
-			path = Views;
+			path = "Views Controller";
+			sourceTree = "<group>";
+		};
+		18964ABF29F6DD9200F8223C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18964AC029F6DDA300F8223C /* LoginModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9D5E38A665B985EBD83AE821 /* Frameworks */ = {
@@ -263,6 +274,7 @@
 				182FE89829F5277200AE7635 /* LoginSignupViewController.swift in Sources */,
 				18126BAD29F59C2700EA63FA /* APIErrorResponse.swift in Sources */,
 				182FE89429F5277200AE7635 /* AppDelegate.swift in Sources */,
+				18964AC129F6DDA300F8223C /* LoginModel.swift in Sources */,
 				18126BB329F5A23700EA63FA /* HomeViewController.swift in Sources */,
 				182FE89629F5277200AE7635 /* SceneDelegate.swift in Sources */,
 			);

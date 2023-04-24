@@ -30,6 +30,10 @@ class LoginSignupViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
+        
+        if let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+                self.navigationController?.pushViewController(homeViewController, animated: true)
+            }
         guard let username = userNameOrEmail.text, let password = password.text else {
             // Handle error if any of the fields is empty
             return
