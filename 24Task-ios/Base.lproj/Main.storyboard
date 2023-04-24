@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,7 +12,6 @@
         <!--Login Signup View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="LoginSignupViewController" customModule="_4Task_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -52,6 +52,9 @@
                                     <constraint firstAttribute="height" constant="40" id="yqn-zq-qG4"/>
                                 </constraints>
                                 <buttonConfiguration key="configuration" style="filled" title="Login"/>
+                                <connections>
+                                    <segue destination="fdj-Xh-zwq" kind="presentation" modalPresentationStyle="fullScreen" id="udl-pk-Xrc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAK-l3-Fdy">
                                 <rect key="frame" x="100" y="435" width="193" height="35"/>
@@ -159,6 +162,7 @@
                         <outlet property="userNameOrEmail" destination="yKD-kt-Nnt" id="4le-o7-7hL"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1052.6717557251909" y="-27.464788732394368"/>
         </scene>
@@ -170,21 +174,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSH-dv-W9z">
-                                <rect key="frame" x="156" y="400" width="87" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search by tag" translatesAutoresizingMaskIntoConstraints="NO" id="4Sv-2R-f9P">
+                                <rect key="frame" x="0.0" y="59" width="393" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="kAl-ci-mnj"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mEl-jw-7vv">
+                                <rect key="frame" x="0.0" y="104" width="393" height="400"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="YPb-Rt-Tlj"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableViewCell" id="qSf-zu-Sss">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qSf-zu-Sss" id="1Zy-5L-nYn">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AgM-ZR-khC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4Sv-2R-f9P" firstAttribute="top" secondItem="AgM-ZR-khC" secondAttribute="top" id="LHI-EY-5X3"/>
+                            <constraint firstItem="mEl-jw-7vv" firstAttribute="top" secondItem="4Sv-2R-f9P" secondAttribute="bottom" id="Og1-iu-ENW"/>
+                            <constraint firstItem="4Sv-2R-f9P" firstAttribute="trailing" secondItem="AgM-ZR-khC" secondAttribute="trailing" id="b4p-QX-WVg"/>
+                            <constraint firstItem="mEl-jw-7vv" firstAttribute="trailing" secondItem="AgM-ZR-khC" secondAttribute="trailing" id="sad-WC-3qR"/>
+                            <constraint firstItem="mEl-jw-7vv" firstAttribute="leading" secondItem="AgM-ZR-khC" secondAttribute="leading" id="tne-Io-w8Y"/>
+                            <constraint firstItem="4Sv-2R-f9P" firstAttribute="leading" secondItem="AgM-ZR-khC" secondAttribute="leading" id="uDm-I6-vrA"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="4Sv-2R-f9P" id="ein-eJ-IWI"/>
+                        <outlet property="tableView" destination="mEl-jw-7vv" id="Ccc-zB-HIT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="liK-LU-PzU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1899" y="-13"/>
+            <point key="canvasLocation" x="2092" y="-20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yyz-bz-Pti">
